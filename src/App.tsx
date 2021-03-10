@@ -1,44 +1,65 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from "react"
+import styled from '@emotion/styled'
+import { createSnackbar } from '@snackbar/core'
+import { format as formatDate } from 'fecha'
+import { saveAs } from "file-saver"
+import { convert } from "./libraries/convert"
+import { convertArrayBufferToBuffer } from "./utils/buffer"
+import { FileInput } from './components/FileInput'
 
-function App() {
-  const [count, setCount] = useState(0)
+/** color paltettes: https://coolors.co/335c67-fff3b0-e09f3e-9e2a2b-540b0e */
+const Styled = styled.div`
+  height: 100%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  background-color: #9E2A2B;
+  color: #FFF3B0;
+  .title {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 2em 0;
+  }
+  .file {
+    background-color: #E09F3E;
+    border: none;
+    color: #540B0E;
+    &:hover {
+      background-color: #FFF3B0;
+    }
+    &.dragging {
+      background-color: #FFF3B0;
+    }
+  }
+`;
+
+const convertAndDownload = async (file: File, filename: string = 'output.csv') => {
+  try {
+    const ab = await file.arrayBuffer()
+    const buffer = convertArrayBufferToBuffer(ab)
+    const result = await convert(buffer)
+    const output = new File([result], filename, {
+      type: "text/plain;charset=utf-8",
+    })
+    saveAs(output)
+  } catch (error) {
+    createSnackbar(error.message)
+  }
+}
+
+const App = () => {
+  const handleFileChange = React.useCallback((file: File | null) => {
+    if (!file) {
+      return
+    }
+    convertAndDownload(file, `${file.name.replace(/\.csv$/, '')}-${formatDate(new Date(), 'YYYYMMDDhhmmss')}.kdbx`)
+  }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Styled>
+      <div className="title">Convert LastPass CSV to KDBX</div>
+      <FileInput className="file" onChange={handleFileChange} />
+    </Styled>
   )
 }
 
