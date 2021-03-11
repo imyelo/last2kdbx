@@ -22,7 +22,7 @@ const Styled = styled.div`
   }
   .file {
     background-color: #E09F3E;
-    border: none;
+    border: 1px dashed #540B0E;
     color: #540B0E;
     &:hover {
       background-color: #FFF3B0;
