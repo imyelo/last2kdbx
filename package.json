@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "lastpass-to-kdbx-web",
+  "name": "last2kdbx",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
