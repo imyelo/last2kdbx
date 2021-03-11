@@ -14,6 +14,10 @@ const Styled = styled.div`
   box-sizing: border-box;
   background-color: #9E2A2B;
   color: #FFF3B0;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   .title {
     text-align: left;
     font-size: 16px;
@@ -29,6 +33,15 @@ const Styled = styled.div`
     }
     &.dragging {
       background-color: #FFF3B0;
+    }
+  }
+  .footer {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #FFF3B0;
+    text-align: right;
+    .divide {
+      padding: 0 10px;
     }
   }
 `;
@@ -60,6 +73,13 @@ const App = () => {
     <Styled>
       <div className="title">Convert LastPass CSV to KDBX</div>
       <FileInput className="file" onChange={handleFileChange} />
+      <div className="footer">
+        <a href="https://github.com/imyelo/last2kdbx#get-start" target="_blank">User Guide</a>
+        <span className="divide">|</span>
+        <a href="https://github.com/imyelo/last2kdbx" target="_blank">GitHub</a>
+        <span className="divide">|</span>
+        <a href="https://github.com/imyelo" target="_blank">@yelo</a>
+      </div>
     </Styled>
   )
 }
