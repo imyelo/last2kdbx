@@ -426,10 +426,10 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-argon2-wasm-pro@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/argon2-wasm-pro/-/argon2-wasm-pro-1.1.0.tgz#6416a87265bc97317ff0c3775c233b2a86add76b"
-  integrity sha512-ApZAKEgbWQILckY+IdjrETB0oTC8L9YHT3JVQhdun77tilExkXNyM/T/qbkvX+Uv68+IQmVwewQwg6yJnSwVxQ==
+argon2-wasm-esm@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/argon2-wasm-esm/-/argon2-wasm-esm-1.0.2.tgz#0969cbad234d26d09603b665f83abb9a2ebcc4c7"
+  integrity sha512-CY9I4ikl/kEWaPOu3NUdDZdcOmBzHDXmnbX3p0gZr9u0E7w+wz0VPtJ4ET+nvFhtlzgW2xfTWxU11ygtEzGkFw==
 
 babel-plugin-macros@^2.6.1:
   version "2.8.0"

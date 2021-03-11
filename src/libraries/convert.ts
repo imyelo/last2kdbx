@@ -38,7 +38,9 @@ export const convert = async (input: Buffer): Promise<Buffer> => {
     entry.fields.Note = source.extra
     entry.pushHistory()
   })
+  debug(db)
   const buffer = await db.save()
+  debug(buffer)
 
   return Promise.resolve(Buffer.from(buffer))
 }

@@ -44,6 +44,7 @@ const convertAndDownload = async (file: File, filename: string = 'output.csv') =
     saveAs(output)
   } catch (error) {
     createSnackbar(error.message)
+    console.error(error)
   }
 }
 

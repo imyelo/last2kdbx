@@ -1,8 +1,8 @@
 import kdbxweb from 'kdbxweb'
 // @ts-ignore
-import { hash } from 'argon2-wasm-pro'
+import argon2 from 'argon2-wasm-esm'
 
-kdbxweb.CryptoEngine.argon2 = function argon2(
+kdbxweb.CryptoEngine.argon2 = async (
   password,
   salt,
   memory,
@@ -11,8 +11,8 @@ kdbxweb.CryptoEngine.argon2 = function argon2(
   parallelism,
   type,
   version
-) {
-  return hash({
+) => {
+  return argon2.hash({
     pass: new Uint8Array(password),
     salt: new Uint8Array(salt),
     time: iterations,

@@ -12,7 +12,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@snackbar/core": "^1.7.0",
-    "argon2-wasm-pro": "^1.1.0",
+    "argon2-wasm-esm": "^1.0.2",
     "buffer": "^6.0.3",
     "csv-parse": "^4.15.3",
     "debug": "^4.3.1",
